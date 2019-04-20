@@ -1,3 +1,106 @@
-<p>
-  navbar works!
-</p>
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark purple lighten-1" [containerInside]="false">
+
+  <!-- Navbar brand -->
+  <mdb-navbar-brand><a class="navbar-brand" href="/">Home</a></mdb-navbar-brand>
+
+  <!-- Collapsible content -->
+  <links>
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto" *ngIf="isAdmin">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Article<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Recipe<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <!-- Links -->
+    <ul class="navbar-nav mr-auto" *ngIf="isLogged && !isAdmin; else notLogged">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Article<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/user/articles/:id">My articles</a>
+        </div>
+      </li>
+  
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          Recipe<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/user/recipes/:id">My recipes</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Links -->
+
+    <ng-template #notLogged>
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect href="/articles">Articles</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+        </li>
+      
+      </ul>
+      <!-- Links -->
+    </ng-template>
+
+    <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isLogged; else noLoggedUser">
+      <li class="nav-item">
+        <a class="nav-link">
+          <div class="btn-group" mdbDropdown>
+            <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+            <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+              <a class="dropdown-item" (click)="logout()">Logout</a>
+            </div>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+    <ng-template #noLoggedUser>
+      <ul class="navbar-nav ml-auto nav-flex-icons">
+        <li class="nav-item">
+          <a class="nav-link">
+            <div class="btn-group" mdbDropdown>
+              <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
+              <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                <a class="dropdown-item" href="/login">Login</a>
+                <a class="dropdown-item" href="/register">Register</a>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </ng-template>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->

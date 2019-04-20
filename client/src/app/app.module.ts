@@ -3,6 +3,8 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,10 +49,12 @@ import { RecipeService } from './services/recipe.service';
     RegisterComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    MDBBootstrapModule.forRoot()
   ],
   providers: [
     UserService,

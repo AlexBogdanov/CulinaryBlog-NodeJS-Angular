@@ -8,4 +8,8 @@ export class NotifMsgs {
         SOMETHING_WENT_WRONG: 'Something went wrong. Please try again.',
         NO_INTERNET_CONNECTION: 'No internet coneection.'
     };
+
+    public static readonly success = {
+        LOGOUT: 'Logout successfull.'
+    };
 }

@@ -7,6 +7,8 @@ const UserSchema = new mongoose.Schema({
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     email: { type: String, required: true, unique: true },
+    fistName: { type: String, required: true },
+    lastName: { type: String, required: true },
     salt: { type: String, required: true },
     roles: [{ type: String, default: 'User' }],
     articles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
@@ -28,6 +30,8 @@ User.seedAdminUser = async () => {
                             username: 'admin',
                             password: hashedPass,
                             email: 'admin@admin.bg',
+                            firstName: 'Admin',
+                            lastName: 'Admin',
                             salt,
                             roles: ['Admin']
                         });
