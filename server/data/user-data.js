@@ -8,7 +8,7 @@ const { secret } = require('./../config/config');
 const BCRYPT_SALT_ROUNDS = 12;
 
 const userData = {
-    register: async (username, password, email ) => {
+    register: async (username, password, email, firstName, lastName ) => {
         try {
             const userDB = await User.findOne({ username });
 
@@ -22,7 +22,10 @@ const userData = {
                 username,
                 password: hashedPass,
                 email,
-                salt
+                firstName,
+                lastName,
+                salt,
+                roles: ['User']
             };
             const createdUser = await User.create(user);
 

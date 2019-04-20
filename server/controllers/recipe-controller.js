@@ -15,7 +15,7 @@ const recipeController = {
           .then(res.success)
           .catch(err => {
             console.log(err);
-            res.error(err.message, null, 500);
+            res.error(err.message);
           });
     },
 
@@ -24,7 +24,7 @@ const recipeController = {
           .then(res.success)
           .catch(err => {
             console.log(err);
-            res.error(err.message, null, 500);
+            res.error(err.message);
           });
     },
 
@@ -35,7 +35,7 @@ const recipeController = {
           .then(res.success)
           .catch(err => {
             console.log(err);
-            res.error(err.message, null, 500);
+            res.error(err.message);
           });
     },
 
@@ -46,7 +46,7 @@ const recipeController = {
           .then(res.success)
           .catch(err => {
             console.log(err);
-            res.error(err.message, null, 500);
+            res.error(err.message);
           });
     },
 
@@ -55,7 +55,7 @@ const recipeController = {
           .then(res.success)
           .catch(err => {
             console.log(err);
-            res.error(err.message, null, 500);
+            res.error(err.message);
           });
     }
 };

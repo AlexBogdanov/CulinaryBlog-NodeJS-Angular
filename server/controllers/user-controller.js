@@ -3,11 +3,15 @@ const cloneOnly = require('./../utilities/clone-only');
 
 const userController = {
     register: (req, res) => {
-        const user = cloneOnly(req.body, ['username', 'password', 'email']);
+        const user = cloneOnly(req.body, ['username', 'password', 'email', 'firstName', 'lastName']);
 
-        userData.register(user.username, user.password, user.email)
-            .then(res.success)
-            .catch(res.fail);
+        userData.register(user.username, user.password, user.email, user.firstName, user.lastName)
+            .then(data => {
+                res.success(data);
+            })
+            .catch(err => {
+                res.error(err.message);
+            });
     },
 
     login: (req, res) => {
@@ -15,7 +19,9 @@ const userController = {
 
         userData.login(user.username, user.password)
             .then(res.success)
-            .catch(res.fail);
+            .catch(err => {
+                res.error(err.message);
+            });
     }
 };
 
