@@ -1,3 +1,30 @@
-<p>
-  articles works!
-</p>
+<div class="text-center" *ngIf="isLoading; else loaded">
+  <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #loaded>
+  <div class="container">
+    <div class="row" *ngFor="let currArtcicles of articles">
+      <div class="col" *ngFor="let article of currArtcicles">
+        <mdb-card>
+          <!--Card image-->
+          <mdb-card-img src="{{article.img}}" alt=""></mdb-card-img>
+          <!--Card content-->
+          <mdb-card-body>
+            <!--Title-->
+            <mdb-card-title>
+              <h4>{{article.title}}</h4>
+            </mdb-card-title>
+                
+            <!--Text-->
+            <mdb-card-text>{{article.shortDescr}}</mdb-card-text>
+              
+            <a href="/article/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Open</a>
+          </mdb-card-body>
+        </mdb-card>
+      </div>
+    </div>
+  </div>
+</ng-template>
