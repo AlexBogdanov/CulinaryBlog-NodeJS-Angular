@@ -5,7 +5,8 @@ const validProperties = [
     'title',
     'description',
     'author',
-    'likes'
+    'likes',
+    'img'
 ];
 
 const articleController = {
@@ -39,7 +40,7 @@ const articleController = {
     },
 
     edit: (req, res) => {
-        const article = cloneOnly(req.body, validProperties);
+        const article = cloneOnly(req.body.article, validProperties);
 
         articleData.edit(req.body.articleId, article)
           .then(res.success)
@@ -56,6 +57,15 @@ const articleController = {
             console.log(err);
             res.error(err.message);
           });
+    },
+
+    getByUserId: (req, res) => {
+      articleData.getArticlesByUserId(req.params.userId)
+        .then(res.success)
+        .catch(err => {
+          console.log(err);
+          res.error(err.message);
+        })
     }
 };
 

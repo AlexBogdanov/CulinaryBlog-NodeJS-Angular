@@ -2,25 +2,27 @@ const Article = require('./../models/Article');
 const notifMsgs = require('./../constants/notification-messages');
 
 const articleData = {
-    getAll: () => new Promise((res, rej) => {
+    getAll: (userId) => new Promise((res, rej) => {
         Article.find((err, articles) => {
             if (err) {
                 console.log(err);
-                return rej(new Error(notifMsgs.errors.COULD_NOT_GET_ARTICLES));
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_ARTICLES));
             }
 
-            return res(articles);
+            res(articles);
         });
     }),
     
     getById: (id) => new Promise((res, rej) => {
-        Article.findById(id, (err, article) => {
+        Article.findById(id)
+        .populate('author', '_id firstName lastName')
+        .exec((err, story) => {
             if (err) {
                 console.log(err);
-                return rej(new Error(notifMsgs.errors.COULD_NOT_GET_ARTICLE));
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_ARTICLE));
             }
 
-            return res(article);
+            res(story)
         });
     }),
     
@@ -54,10 +56,21 @@ const articleData = {
         Article.findByIdAndDelete(id, (err) => {
             if (err) {
                 console.log(err);
-                return rej(new Error(notifMsgs.errors.COULD_NOT_DELETE_ARTICLE));
+                rej(new Error(notifMsgs.errors.COULD_NOT_DELETE_ARTICLE));
             }
 
-            return res({ msg: notifMsgs.success.ARTICLE_DELETED });
+            res({ msg: notifMsgs.success.ARTICLE_DELETED });
+        });
+    }),
+
+    getArticlesByUserId: (userId) => new Promise((res, rej) => {
+        Article.find({ author: userId }, (err, articles) => {
+            if (err) {
+                console.log(err);
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_ARTICLES));
+            }
+
+            res(articles);
         });
     })
 };
