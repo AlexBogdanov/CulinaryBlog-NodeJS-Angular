@@ -1,4 +1,8 @@
 export class Constants {
+    public static readonly common = {
+        SERVER_BASE_PATH: 'http://localhost:8080'
+    };
+
     public static readonly statusCodes = {
         BAD_REQUEST: 400,
         UNAUTHORIZED: 401,
