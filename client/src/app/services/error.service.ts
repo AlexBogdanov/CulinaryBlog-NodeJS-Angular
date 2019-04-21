@@ -31,7 +31,7 @@ export class ErrorService {
         return NotifMsgs.serverErrors.NO_INTERNET_CONNECTION;
       }
   
-      return err.error ? err.error : err.message ? err.message : err.toString();
+      return err.error.error ? err.error.error : err.error.message ? err.error.message : err.error.toString();
     } else if (err.status && err.status === Constants.statusCodes.BAD_GATEWAY) {
         return NotifMsgs.serverErrors.INTERNAL_SERVER_ERROR;
     } else if (err.status && err.status === Constants.statusCodes.SERVICE_UNAVAILABLE) {

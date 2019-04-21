@@ -5,13 +5,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+// Interceptors
+import { ServerErrorInterceptor } from './http-interceptors/server-error-interceptor';
+import { TokenInterceptor } from './http-interceptors/token-interceptor';
+
 // Error handler
 import { GlobalErrorHandler } from './utilities/global-error-handler';
-import { ServerErrorInterceptor } from './http-interceptors/server-error-interceptor';
 
 // Components
 import { ArticlesComponent } from './components/article/articles/articles.component';
@@ -21,7 +25,6 @@ import { ArticleComponent } from './components/article/article/article.component
 import { RecipesComponent } from './components/recipe/recipes/recipes.component';
 import { CreateRecipeComponent } from './components/recipe/create-recipe/create-recipe.component';
 import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
-import { RecipeComponent } from './components/recipe/recipe/recipe.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
@@ -31,6 +34,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
 import { RecipeService } from './services/recipe.service';
+import { MyArticlesComponent } from './components/article/my-articles/my-articles.component';
 
 @NgModule({
   declarations: [
@@ -41,18 +45,19 @@ import { RecipeService } from './services/recipe.service';
     RecipesComponent,
     CreateRecipeComponent,
     EditRecipeComponent,
-    ArticleComponent,
-    RecipeComponent,
     HomeComponent,
     NavbarComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ArticleComponent,
+    MyArticlesComponent
   ],
   imports: [
-    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
     ToastrModule.forRoot(),
     MDBBootstrapModule.forRoot()
   ],
@@ -61,7 +66,8 @@ import { RecipeService } from './services/recipe.service';
     ArticleService,
     RecipeService,
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
-    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

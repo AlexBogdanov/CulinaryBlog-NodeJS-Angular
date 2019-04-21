@@ -1,3 +1,33 @@
-<p>
-  create-article works!
-</p>
+<div class="text-center" *ngIf="isLoading; else loaded">
+    <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+    
+  <ng-template #loaded>
+    <div class="form-wrapper">
+      <!-- Default form create article -->    
+      <form class="text-center border border-light p-5 wrapped" (submit)="createArticle()">
+        <p class="h4 mb-4">Create article</p>
+  
+        <!-- Title -->
+        <input type="text" name="title" class="form-control mb-4" placeholder="Title" [(ngModel)]="title" required >
+  
+        <!-- Description -->
+        <div class="md-form">
+          <textarea type="text" id="form7" class="md-textarea form-control" [(ngModel)]="description"
+          [ngModelOptions]="{standalone: true}" rows="10" mdbInput></textarea>
+          <label for="form7">Content</label>
+        </div>
+  
+        <!-- Img -->
+        <input type="text" name="img" class="form-control mb-4" placeholder="Image url" [(ngModel)]="img" required >
+  
+        <!-- Create button -->
+        <button mdbBtn color="secondary" block="true" class="my-4" type="submit">Create</button>
+        <hr>
+      </form>
+      <!-- Default form create article -->
+    </div>
+  </ng-template>
+  

@@ -10,15 +10,18 @@ export class NavbarComponent implements OnInit {
   public isLoading: boolean;
   public isLogged: boolean;
   public isAdmin: boolean;
+  public currUserId: string;
 
-  constructor(public userService: UserService) { }
+  constructor(private _userService: UserService) { }
 
   ngOnInit() {
-    this.isLogged = this.userService.isLogged();
-    this.isAdmin = this.userService.isAdmin();
+    this.isLogged = this._userService.isLogged();
+    this.isAdmin = this._userService.isAdmin();
+    this.currUserId = this._userService.getItem('id');
   }
 
   logout(): void {
-    this.userService.logout();
+    this._userService.logout();
+    window.location.href = '/';
   }
 }

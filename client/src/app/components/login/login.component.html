@@ -1,3 +1,25 @@
-<p>
-  login works!
-</p>
+<div class="text-center" *ngIf="isLoading; else loaded">
+  <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+  
+<ng-template #loaded>
+  <div class="form-wrapper">
+    <!-- Default form login -->    
+    <form class="text-center border border-light p-5 wrapped" (submit)="loginUser()">
+      <p class="h4 mb-4">Sign in</p>
+
+      <!-- Username -->
+      <input type="text" name="username" class="form-control mb-4" placeholder="Username" [(ngModel)]="username" required >
+
+      <!-- Password -->
+      <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="password" [(ngModel)]="password" required>
+
+      <!-- Sign in button -->
+      <button mdbBtn color="secondary" block="true" class="my-4" type="submit">Sign in</button>
+      <hr>
+    </form>
+    <!-- Default form login -->
+  </div>
+</ng-template>

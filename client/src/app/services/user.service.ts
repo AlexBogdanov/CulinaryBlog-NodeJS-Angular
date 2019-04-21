@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 
+import { RegisterUserModel } from './../models/register-user.model';
+import { LoginUserModel } from './../models/login-user.model';
 import { NotificationService } from './notification.service';
 import { NotifMsgs } from './../constants/notification-messages';
+import { Constants } from './../constants/constants';
 
 // URLs
-const registerUrl = '/user/register';
-const loginUrl = '/user/login';
+const registerUrl = `${Constants.common.SERVER_BASE_PATH}/user/register`;
+const loginUrl = `${Constants.common.SERVER_BASE_PATH}/user/login`;
 
 @Injectable({
   providedIn: 'root'
@@ -35,7 +39,8 @@ export class UserService {
       ? true: false;
   }
 
-  setUserLocal(token, role) {
+  setUserLocal(id, token, role) {
+    window.localStorage.setItem('id', id);
     window.localStorage.setItem('token', token);
     window.localStorage.setItem('role', role);
   }
@@ -45,9 +50,9 @@ export class UserService {
     window.sessionStorage.setItem('role', role);
   }
 
-  getToken() {
-    const localStorage = window.localStorage.getItem('token');
-    const sessionStorage = window.sessionStorage.getItem('token');
+  getItem(itemName) {
+    const localStorage = window.localStorage.getItem(itemName);
+    const sessionStorage = window.sessionStorage.getItem(itemName);
 
     return localStorage ? localStorage : sessionStorage;
   }
@@ -59,11 +64,11 @@ export class UserService {
     this.notificationService.showSuccess(NotifMsgs.success.LOGOUT);
   }
 
-  register(user) {
+  register(user: RegisterUserModel): Observable<any> {
     return this.http.post(registerUrl, user);
   }
 
-  login(user) {
+  login(user: LoginUserModel): Observable<any> {
     return this.http.post(loginUrl, user);
   }
 }

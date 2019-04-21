@@ -1,3 +1,38 @@
-<p>
-  register works!
-</p>
+<div class="text-center" *ngIf="isLoading; else loaded">
+  <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #loaded>
+  <div class="form-wrapper">
+    <!-- Default form register -->    
+    <form class="text-center border border-light p-5 wrapped" (submit)="registerUser()">
+      <p class="h4 mb-4">Sign up</p>
+
+      <div class="form-row mb-4">
+        <div class="col">
+          <!-- First name -->
+          <input type="text" name="firstname" class="form-control" placeholder="First name" [(ngModel)]="firstName" required >
+        </div>
+        <div class="col">
+          <!-- Last name -->
+          <input type="text" name="lastName" class="form-control" placeholder="Last name" [(ngModel)]="lastName" required >
+        </div>
+      </div>
+
+      <!-- Username -->
+      <input type="text" name="username" class="form-control mb-4" placeholder="Username" [(ngModel)]="username" required >
+      <!-- E-mail -->
+      <input type="email" name="email" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="email" required >
+
+      <!-- Password -->
+      <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="password" [(ngModel)]="password" required>
+
+      <!-- Sign up button -->
+      <button mdbBtn color="secondary" block="true" class="my-4" type="submit">Sign up</button>
+      <hr>
+    </form>
+    <!-- Default form register -->
+  </div>
+</ng-template>

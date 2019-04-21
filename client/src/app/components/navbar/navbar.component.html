@@ -8,7 +8,7 @@
   <links>
 
     <!-- Links -->
-    <ul class="navbar-nav mr-auto" *ngIf="isAdmin">
+    <ul class="navbar-nav mr-auto" *ngIf="isAdmin; else notAdmin">
       <!-- Dropdown -->
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
@@ -30,45 +30,47 @@
     </ul>
     <!-- Links -->
 
-    <!-- Links -->
-    <ul class="navbar-nav mr-auto" *ngIf="isLogged && !isAdmin; else notLogged">
-      <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Article<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
-          <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/user/articles/:id">My articles</a>
-        </div>
-      </li>
-  
-      <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          Recipe<span class="caret"></span></a>
-        <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
-          <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/user/recipes/:id">My recipes</a>
-        </div>
-      </li>
-    </ul>
-    <!-- Links -->
-
-    <ng-template #notLogged>
+    <ng-template #notAdmin>
       <!-- Links -->
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect href="/articles">Articles</a>
+      <ul class="navbar-nav mr-auto" *ngIf="isLogged; else notLogged">
+        <!-- Dropdown -->
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Article<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/my-articles/{{currUserId}}">My articles</a>
+          </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+    
+        <li class="nav-item dropdown" dropdown>
+          <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+            Recipe<span class="caret"></span></a>
+          <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
+            <div class="divider dropdown-divider"></div>
+            <a class="dropdown-item waves-light" mdbWavesEffect href="/user/recipes/:id">My recipes</a>
+          </div>
         </li>
-      
       </ul>
       <!-- Links -->
+
+      <ng-template #notLogged>
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect href="/articles">Articles</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+          </li>
+        
+        </ul>
+        <!-- Links -->
+      </ng-template>
     </ng-template>
 
     <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isLogged; else noLoggedUser">

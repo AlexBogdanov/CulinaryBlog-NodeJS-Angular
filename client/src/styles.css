@@ -191,4 +191,19 @@
       width: 25em;
     }
   }
+
+div.form-wrapper {
+  text-align: center;
+}
+
+form.wrapped {
+  display: inline-block;
+  width: 45%;
+  margin-top: 5%;
+}
+
+div.container-additional-style {
+  background-color: turquoise;
+  opacity: 0.7;
+}
   
