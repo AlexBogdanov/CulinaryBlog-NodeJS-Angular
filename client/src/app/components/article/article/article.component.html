@@ -1,3 +1,56 @@
-<p>
-  article works!
-</p>
+<div class="text-center" *ngIf="isLoading; else loaded">
+  <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #loaded>
+  <div class="container container-additional-style">
+    <!-- Title -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        {{article.title}}
+      </div>
+      <div class="col"></div>
+    </div><!-- /row -->
+
+    <hr />
+
+    <!-- Img -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <img src="{{article.img}}" />
+      </div>
+      <div class="col"></div>
+    </div><!-- /row -->
+
+    <hr />
+
+    <!-- Description -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        {{article.description}}
+      </div>
+      <div class="col"></div>
+    </div> <!-- /row -->
+
+    <hr />
+
+    <!-- Author -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col">
+       Author: {{article.author.firstName}} {{article.author.lastName}}
+      </div>
+    </div> <!-- /row -->
+
+    <div class="row" *ngIf="isAdmin || article.isAuthor">
+      <a href="/article/edit/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
+      <a mdbBtn color="secondary" (click)="deleteArticle(article._id)" mdbWavesEffect>Delete</a>
+    </div> <!-- /row -->
+  </div><!-- /container -->
+</ng-template>
