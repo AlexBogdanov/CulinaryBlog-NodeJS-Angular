@@ -19,6 +19,8 @@ import { MyArticlesComponent } from './components/article/my-articles/my-article
 import { RecipesComponent } from './components/recipe/recipes/recipes.component';
 import { CreateRecipeComponent } from './components/recipe/create-recipe/create-recipe.component';
 import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
+import { RecipeComponent } from './components/recipe/recipe/recipe.component';
+import { MyRecipesComponent } from './components/recipe/my-recipes/my-recipes.component';
 
 const routes: Routes = [
   // Common
@@ -32,11 +34,13 @@ const routes: Routes = [
   { path: 'article/create', component: CreateArticleComponent },
   { path: 'article/edit/:id', component: EditArticleComponent },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'my-articles/:id', component: MyArticlesComponent },
+  { path: 'my-articles', component: MyArticlesComponent },
   // Recipe
   { path: 'recipes', component: RecipesComponent },
   { path: 'recipe/create', component: CreateRecipeComponent },
-  { path: 'recipe/edit/:id', component: EditRecipeComponent }
+  { path: 'recipe/edit/:id', component: EditRecipeComponent },
+  { path: 'recipe/:id', component: RecipeComponent },
+  { path: 'my-recipes', component: MyRecipesComponent }
 ];
 
 @NgModule({

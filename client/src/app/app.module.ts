@@ -18,23 +18,25 @@ import { TokenInterceptor } from './http-interceptors/token-interceptor';
 import { GlobalErrorHandler } from './utilities/global-error-handler';
 
 // Components
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 import { ArticlesComponent } from './components/article/articles/articles.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
 import { EditArticleComponent } from './components/article/edit-article/edit-article.component';
 import { ArticleComponent } from './components/article/article/article.component';
+import { MyArticlesComponent } from './components/article/my-articles/my-articles.component';
 import { RecipesComponent } from './components/recipe/recipes/recipes.component';
 import { CreateRecipeComponent } from './components/recipe/create-recipe/create-recipe.component';
 import { EditRecipeComponent } from './components/recipe/edit-recipe/edit-recipe.component';
-import { HomeComponent } from './components/home/home.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
+import { RecipeComponent } from './components/recipe/recipe/recipe.component';
+import { MyRecipesComponent } from './components/recipe/my-recipes/my-recipes.component';
 
 // Services
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
 import { RecipeService } from './services/recipe.service';
-import { MyArticlesComponent } from './components/article/my-articles/my-articles.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { MyArticlesComponent } from './components/article/my-articles/my-article
     LoginComponent,
     RegisterComponent,
     ArticleComponent,
-    MyArticlesComponent
+    MyArticlesComponent,
+    RecipeComponent,
+    MyRecipesComponent
   ],
   imports: [
     BrowserModule,
