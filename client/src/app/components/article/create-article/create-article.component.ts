@@ -38,13 +38,13 @@ export class CreateArticleComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     if (this.title.length < 5) {
-      this._notificationService.showWarning(NotifMsgs.error.TITLE_TOO_SHORT);
+      this._notificationService.showWarning(NotifMsgs.warning.TITLE_TOO_SHORT);
       this.isLoading = false;
       return;
     }
 
-    if (this.description.length < 70) {
-      this._notificationService.showWarning(NotifMsgs.error.DESCRIPTION_TOO_SHORT);
+    if (this.description.length < 200) {
+      this._notificationService.showWarning(NotifMsgs.warning.DESCRIPTION_TOO_SHORT);
       this.isLoading = false;
       return;
     }
