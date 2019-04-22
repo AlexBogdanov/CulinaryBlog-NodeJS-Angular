@@ -33,13 +33,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     if (this.username.length < 3) {
-      this._notificationService.showWarning(NotifMsgs.error.USERNAME_TOO_SHORT);
+      this._notificationService.showWarning(NotifMsgs.warning.USERNAME_TOO_SHORT);
       this.isLoading = false;
       return;
     }
 
     if (this.password.length < 6) {
-      this._notificationService.showWarning(NotifMsgs.error.PASSWORD_TOO_SHORT);
+      this._notificationService.showWarning(NotifMsgs.warning.PASSWORD_TOO_SHORT);
       this.isLoading = false;
       return;
     }
