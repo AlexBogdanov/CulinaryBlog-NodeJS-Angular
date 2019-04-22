@@ -11,37 +11,37 @@ const getArticleByIdUrl = `${Constants.common.SERVER_BASE_PATH}/article/get/`;
 const getAllArticlesUrl = `${Constants.common.SERVER_BASE_PATH}/article/all`;
 const editArticleUrl = `${Constants.common.SERVER_BASE_PATH}/article/edit`;
 const deleteArticleUrl = `${Constants.common.SERVER_BASE_PATH}/article/delete/`;
-const getarticlesByUserIdUrl = `${Constants.common.SERVER_BASE_PATH}/article/articles/`;
+const getUserArticlesUrl = `${Constants.common.SERVER_BASE_PATH}/article/userArticles`;
 
 @Injectable({
   providedIn: 'root'
 })
 export class ArticleService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private _http: HttpClient) { }
 
   createArticle(article: ArticleModel): Observable<any> {
-    return this.http.post(createArticleUrl, article);
+    return this._http.post(createArticleUrl, article);
   }
 
   getArticleById(id: string): Observable<any> {
-    return this.http.get(getArticleByIdUrl + id);
+    return this._http.get(getArticleByIdUrl + id);
   }
 
   getAllArticles(): Observable<any> {
-    return this.http.get(getAllArticlesUrl);
+    return this._http.get(getAllArticlesUrl);
   }
 
   editArticle(articleId: string, article: any): Observable<any> {
-    return this.http.put(editArticleUrl, { articleId, article });
+    return this._http.put(editArticleUrl, { articleId, article });
   }
 
   deleteArticle(articleId: string): Observable<any> {
-    return this.http.delete(deleteArticleUrl + articleId);
+    return this._http.delete(deleteArticleUrl + articleId);
   }
 
-  getArticlesByUserId(userId: string): Observable<any> {
-    return this.http.get(getarticlesByUserIdUrl + userId);
+  getUserArticles(): Observable<any> {
+    return this._http.get(getUserArticlesUrl);
   }
 
 }

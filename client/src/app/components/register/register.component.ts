@@ -38,31 +38,31 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     if (!this.firstName) {
-      this._notificationService.showWarning(NotifMsgs.error.FIRST_NAME_REQUIRED);
+      this._notificationService.showWarning(NotifMsgs.warning.FIRST_NAME_REQUIRED);
       this.isLoading = false;
       return;
     }
 
     if (!this.lastName) {
-      this._notificationService.showWarning(NotifMsgs.error.LAST_NAME_REQUIRED);
+      this._notificationService.showWarning(NotifMsgs.warning.LAST_NAME_REQUIRED);
       this.isLoading = false;
       return;
     }
 
     if (this.username.length < 3) {
-      this._notificationService.showWarning(NotifMsgs.error.USERNAME_TOO_SHORT);
+      this._notificationService.showWarning(NotifMsgs.warning.USERNAME_TOO_SHORT);
       this.isLoading = false;
       return;
     }
 
     if (!this.email) {
-      this._notificationService.showWarning(NotifMsgs.error.EMAIL_REQUIRED);
+      this._notificationService.showWarning(NotifMsgs.warning.EMAIL_REQUIRED);
       this.isLoading = false;
       return;
     }
 
     if (this.password.length < 6) {
-      this._notificationService.showWarning(NotifMsgs.error.PASSWORD_TOO_SHORT);
+      this._notificationService.showWarning(NotifMsgs.warning.PASSWORD_TOO_SHORT);
       this.isLoading = false;
       return;
     }
