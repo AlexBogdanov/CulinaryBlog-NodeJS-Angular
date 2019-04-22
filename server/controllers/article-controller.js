@@ -59,8 +59,8 @@ const articleController = {
           });
     },
 
-    getByUserId: (req, res) => {
-      articleData.getArticlesByUserId(req.params.userId)
+    getUserArticles: (req, res) => {
+      articleData.getArticlesByUserId(req.user._id)
         .then(res.success)
         .catch(err => {
           console.log(err);

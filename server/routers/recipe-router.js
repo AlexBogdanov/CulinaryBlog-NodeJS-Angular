@@ -8,6 +8,7 @@ router
     .get('/get/:recipeId', recipeController.getById)
     .post('/create', passport.authenticate('jwt'), recipeController.create)
     .put('/edit', passport.authenticate('jwt'), recipeController.edit)
-    .delete('/delete/:recipeId', passport.authenticate('jwt'), recipeController.delete);
+    .delete('/delete/:recipeId', passport.authenticate('jwt'), recipeController.delete)
+    .get('/userRecipes', passport.authenticate('jwt'), recipeController.getUserRecipes);
 
 module.exports = router;

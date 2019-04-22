@@ -9,6 +9,6 @@ router
     .post('/create', passport.authenticate('jwt'), articleController.create)
     .put('/edit', passport.authenticate('jwt'), articleController.edit)
     .delete('/delete/:articleId', passport.authenticate('jwt'), articleController.delete)
-    .get('/articles/:userId', passport.authenticate('jwt'), articleController.getByUserId);
+    .get('/userArticles', passport.authenticate('jwt'), articleController.getUserArticles);
 
 module.exports = router;

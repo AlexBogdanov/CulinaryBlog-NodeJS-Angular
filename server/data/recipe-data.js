@@ -6,21 +6,23 @@ const recipeData = {
         Recipe.find((err, recipes) => {
             if (err) {
                 console.log(err);
-                return rej(new Error(notifMsgs.errors.COULD_NOT_GET_RECIPES));
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_RECIPES));
             }
 
-            return res(recipes);
+            res(recipes);
         });
     }),
 
     getById: (id) => new Promise((res, rej) => {
-        Recipe.findById(id, (err, recipe) => {
+        Recipe.findById(id)
+        .populate('author', '_id firstName lastName')
+        .exec((err, recipe) => {
             if (err) {
                 console.log(err);
-                return rej(new Error(notifMsgs.errors.COULD_NOT_GET_RECIPE));
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_RECIPE));
             }
 
-            return res(recipe);
+            res(recipe);
         });
     }),
 
@@ -63,10 +65,21 @@ const recipeData = {
         Recipe.findByIdAndDelete(id, (err) => {
             if (err) {
                 console.log(err);
-                return rej(new Error(notifMsgs.errors.COULD_NOT_DELETE_RECIPE));
+                rej(new Error(notifMsgs.errors.COULD_NOT_DELETE_RECIPE));
             }
 
-            return res({ msg: notifMsgs.success.RECIPE_DELETED });
+            res({ msg: notifMsgs.success.RECIPE_DELETED });
+        });
+    }),
+
+    getRecipesByUserId: (userId) => new Promise((res, rej) => {
+        Recipe.find({ author: userId }, (err, recipes) => {
+            if (err) {
+                console.log(err);
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_RECIPES));
+            }
+
+            res(recipes);
         });
     })
 };

@@ -6,7 +6,7 @@ const validProperties = [
     'preparation',
     'products',
     'author',
-    'likes'
+    'img'
 ];
 
 const recipeController = {
@@ -40,7 +40,7 @@ const recipeController = {
     },
 
     edit: (req, res) => {
-        const recipe = cloneOnly(req.body, validProperties);
+        const recipe = cloneOnly(req.body.recipe, validProperties);
 
         recipeData.edit(req.body.recipeId, recipe)
           .then(res.success)
@@ -57,6 +57,15 @@ const recipeController = {
             console.log(err);
             res.error(err.message);
           });
+    },
+
+    getUserRecipes: (req, res) => {
+      recipeData.getRecipesByUserId(req.user._id)
+        .then(res.success)
+        .catch(err => {
+          console.log(err);
+          res.error(err.message);
+        });
     }
 };
 
