@@ -1,0 +1,59 @@
+<div class="text-center" *ngIf="isLoading; else loaded">
+  <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #loaded>
+  <div class="container container-additional-style">
+    <!-- Name -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        {{recipe.name}}
+      </div>
+      <div class="col"></div>
+    </div><!-- /row -->
+
+    <hr />
+
+    <!-- Img -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col">
+        <img src="{{recipe.img}}" />
+      </div>
+      <div class="col"></div>
+    </div><!-- /row -->
+
+    <hr />
+
+    <!-- Preparation -->
+    <div class="row">
+      <div class="col">
+        <div class="row" *ngFor="let product of recipe.products">
+          {{product}}
+        </div>
+      </div>
+      <div class="col">
+        {{recipe.preparation}}
+      </div>
+    </div> <!-- /row -->
+
+    <hr />
+
+    <!-- Author -->
+    <div class="row">
+      <div class="col"></div>
+      <div class="col"></div>
+      <div class="col">
+       Author: {{recipe.author.firstName}} {{recipe.author.lastName}}
+      </div>
+    </div> <!-- /row -->
+
+    <div class="row" *ngIf="isAdmin || recipe.isAuthor">
+      <a href="/recipe/edit/{{recipe._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
+      <a mdbBtn color="secondary" (click)="deleteRecipe(recipe._id)" mdbWavesEffect>Delete</a>
+    </div> <!-- /row -->
+  </div><!-- /container -->
+</ng-template>
