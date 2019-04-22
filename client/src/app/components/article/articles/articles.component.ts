@@ -29,8 +29,8 @@ export class ArticlesComponent implements OnInit, OnDestroy {
         const temp = [];
         temp[j] = [];
 
-        res.data.map(article => {
-          article.shortDescr = article.description.substring(0, 30);
+        this.articles = res.data.map(article => {
+          article.shortDescr = article.description.substring(0, 200);
           return article;
         }).forEach(article => {
           if (temp[j].length < 3) {
