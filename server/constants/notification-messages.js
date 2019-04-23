@@ -14,7 +14,11 @@ const notifMsgs = {
         COULD_NOT_GET_RECIPE: 'Unable to get recipe, please try again.',
         COULD_NOT_CREATE_RECIPE: 'Unable to create recipe, please try again.',
         COULD_NOT_UPDATE_RECIPE: 'Unable to update recipe, please try again.',
-        COULD_NOT_DELETE_RECIPE: 'Unable to delete recipe, please try again.'
+        COULD_NOT_DELETE_RECIPE: 'Unable to delete recipe, please try again.',
+        COULD_NOT_GET_USER: 'Unable to find user, please try again.',
+        COULD_NOT_UPDATE_USER: 'Unable to update user, please try again.',
+        COULD_NOT_ADD_ARTICLE_TO_USER: 'Unable to add article to user.',
+        COULD_NOT_ADD_RECIPE_TO_USER: 'Unable to add recipe to user.'
     },
 
     success: {
@@ -25,7 +29,8 @@ const notifMsgs = {
         ARTICLE_DELETED: 'Article deleted successfully.',
         RECIPE_CREATED: 'Recipe created successfully.',
         RECIPE_UPDATED: 'Recipe updated successfully.',
-        RECIPE_DELETED: 'Recipe deleted successfully.'
+        RECIPE_DELETED: 'Recipe deleted successfully.',
+        USER_UPDATED: 'User updated successfully.'
     }
 };
 

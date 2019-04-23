@@ -1,4 +1,4 @@
-const { recipeData } = require('./../data');
+const { recipeData, userData } = require('./../data');
 const cloneOnly = require('./../utilities/clone-only');
 
 const validProperties = [
@@ -28,15 +28,17 @@ const recipeController = {
           });
     },
 
-    create: (req, res) => {
+    create: async (req, res) => {
         const recipe = cloneOnly(req.body, validProperties);
 
-        recipeData.create(recipe)
-          .then(res.success)
-          .catch(err => {
-            console.log(err);
-            res.error(err.message);
-          });
+        try {
+          const data = await recipeData.create(recipe);
+          await userData.addRecipeToUser(req.user._id, data.recipe._id);
+          res.success(data);
+        } catch (err) {
+          console.log(err);
+          res.error(err.message);
+        }
     },
 
     edit: (req, res) => {

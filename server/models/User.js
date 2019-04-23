@@ -12,7 +12,8 @@ const UserSchema = new mongoose.Schema({
     salt: { type: String, required: true },
     roles: [{ type: String, required: true }],
     articles: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Article' }],
-    recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }]
+    recipes: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Recipe' }],
+    profilePic: { type: String, default: 'https://static.thenounproject.com/png/2958-200.png' }
 });
 
 const User = mongoose.model('User', UserSchema);

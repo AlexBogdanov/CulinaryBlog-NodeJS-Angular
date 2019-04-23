@@ -56,6 +56,69 @@ const userData = {
             console.log(err);
             throw new Error(notifMsgs.errors.LOGIN_FAILED);
         }
+    },
+
+    getUserById: (id) => new Promise((res, rej) => {
+        User.findById(id)
+        .populate('articles recipes')
+        .exec((err, user) => {
+            if (err) {
+                console.log(err);
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_USER));
+            }
+
+            res(user);
+        });
+    }),
+
+    updateUser: async (id, newUser) => {
+        try {
+            const user = await User.findById(id);
+
+            for (const[key, value] of Object.entries(newUser)) {
+                if (value) {
+                    user[key] = value;
+                }
+            }
+
+            await user.save();
+            return { user, msg: notifMsgs.success.USER_UPDATED };
+        } catch (err) {
+            console.log(err);
+            throw new Error(notifMsgs.errors.COULD_NOT_UPDATE_USER);
+        }
+    },
+
+    addArticleToUser: async (userId, articleId) => {
+        try {
+            const user = await User.findById(userId);
+            const articleIdStr = articleId.toString();
+            
+            if (!user.articles.includes(articleIdStr)) {
+                user.articles.push(articleIdStr);
+            }
+
+            await user.save();
+        } catch (err) {
+            console.log(err);
+            throw new Error(notifMsgs.errors.COULD_NOT_ADD_ARTICLE_TO_USER);
+        }
+    },
+
+    addRecipeToUser: async (userId, recipeId) => {
+        try {
+            const user = await User.findById(userId);
+            const recipeIdStr = recipeId.toString();
+
+            if (!user.recipes.includes(recipeIdStr)) {
+                user.recipes.push(recipeIdStr);
+            }
+
+            await user.save();
+        } catch (err) {
+            console.log(err);
+            throw new Error(notifMsgs.errors.COULD_NOT_ADD_RECIPE_TO_USER);
+        }
     }
 };
 
