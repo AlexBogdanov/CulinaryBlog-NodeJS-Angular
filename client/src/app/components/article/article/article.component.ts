@@ -57,7 +57,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
         this._notificationService.showSuccess(res.data.msg);
         const route = this.isAdmin
           ? '/articles'
-          : `/my-articles/${this._currUserId}`;
+          : `/my-articles`;
         
         this._router.navigate([route]);
       }, err => {

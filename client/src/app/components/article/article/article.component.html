@@ -8,49 +8,54 @@
   <div class="container container-additional-style">
     <!-- Title -->
     <div class="row">
-      <div class="col"></div>
-      <div class="col">
-        {{article.title}}
+      <div class="col col-header">
+        <h3>
+          <strong>
+            {{article.title}}
+          </strong>
+        </h3>
       </div>
-      <div class="col"></div>
     </div><!-- /row -->
 
     <hr />
 
     <!-- Img -->
     <div class="row">
-      <div class="col"></div>
-      <div class="col">
+      <div class="col col-img">
         <img src="{{article.img}}" />
       </div>
-      <div class="col"></div>
     </div><!-- /row -->
 
     <hr />
 
     <!-- Description -->
     <div class="row">
-      <div class="col"></div>
-      <div class="col">
+      <div class="col col-content">
         {{article.description}}
       </div>
-      <div class="col"></div>
-    </div> <!-- /row -->
+    </div><!-- /row -->
 
     <hr />
 
     <!-- Author -->
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col">
-       Author: {{article.author.firstName}} {{article.author.lastName}}
+    <div class="row" *ngIf="isAdmin || article.isAuthor; else notAuth">
+      <div class="col col-btns">
+        <a href="/article/edit/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
+        <a mdbBtn color="secondary" (click)="deleteArticle(article._id)" mdbWavesEffect>Delete</a>
       </div>
-    </div> <!-- /row -->
+      <div class="col col-footer">
+        Author: {{article.author.firstName}} {{article.author.lastName}}
+      </div>
+    </div><!-- /row -->
 
-    <div class="row" *ngIf="isAdmin || article.isAuthor">
-      <a href="/article/edit/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
-      <a mdbBtn color="secondary" (click)="deleteArticle(article._id)" mdbWavesEffect>Delete</a>
-    </div> <!-- /row -->
+    <ng-template #notAuth>
+      <div class="row">
+        <div class="col col-footer">
+          Author: {{article.author.firstName}} {{article.author.lastName}}
+        </div>
+      </div><!-- /row -->
+   </ng-template>
+
+    <hr />
   </div><!-- /container -->
 </ng-template>

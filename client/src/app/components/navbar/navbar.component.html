@@ -16,6 +16,8 @@
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
           <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/my-articles">My articles</a>
         </div>
       </li>
 
@@ -25,6 +27,8 @@
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
           <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
+          <div class="divider dropdown-divider"></div>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="/my-recipes">My recipes</a>
         </div>
       </li>
     </ul>
@@ -79,6 +83,7 @@
           <div class="btn-group" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+              <a class="dropdown-item" href="/profile/{{currUserId}}">My profile</a>
               <a class="dropdown-item" (click)="logout()">Logout</a>
             </div>
           </div>

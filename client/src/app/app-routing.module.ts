@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+// Guards
+import { AuthGuard } from './guards/auth-guard.service';
+
 // Common
 import { HomeComponent } from './components/home/home.component';
 
 // User
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 // Article
 import { ArticlesComponent } from './components/article/articles/articles.component';
@@ -29,18 +33,19 @@ const routes: Routes = [
   // User
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'profile/:id', component: ProfileComponent , canActivate: [AuthGuard]},
   // Article
   { path: 'articles', component: ArticlesComponent },
-  { path: 'article/create', component: CreateArticleComponent },
-  { path: 'article/edit/:id', component: EditArticleComponent },
+  { path: 'article/create', component: CreateArticleComponent, canActivate: [AuthGuard] },
+  { path: 'article/edit/:id', component: EditArticleComponent, canActivate: [AuthGuard] },
   { path: 'article/:id', component: ArticleComponent },
-  { path: 'my-articles', component: MyArticlesComponent },
+  { path: 'my-articles', component: MyArticlesComponent, canActivate: [AuthGuard] },
   // Recipe
   { path: 'recipes', component: RecipesComponent },
-  { path: 'recipe/create', component: CreateRecipeComponent },
-  { path: 'recipe/edit/:id', component: EditRecipeComponent },
+  { path: 'recipe/create', component: CreateRecipeComponent, canActivate: [AuthGuard] },
+  { path: 'recipe/edit/:id', component: EditRecipeComponent, canActivate: [AuthGuard] },
   { path: 'recipe/:id', component: RecipeComponent },
-  { path: 'my-recipes', component: MyRecipesComponent }
+  { path: 'my-recipes', component: MyRecipesComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

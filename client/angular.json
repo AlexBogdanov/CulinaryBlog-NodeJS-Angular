@@ -92,7 +92,7 @@
             ],
             "scripts": [],
             "assets": [
-              "src/favicon.ico",
+              "src/fFavicon.ico",
               "src/assets"
             ]
           }

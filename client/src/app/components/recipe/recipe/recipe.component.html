@@ -8,34 +8,34 @@
   <div class="container container-additional-style">
     <!-- Name -->
     <div class="row">
-      <div class="col"></div>
-      <div class="col">
+      <div class="col col-header">
         {{recipe.name}}
       </div>
-      <div class="col"></div>
     </div><!-- /row -->
 
     <hr />
 
     <!-- Img -->
     <div class="row">
-      <div class="col"></div>
-      <div class="col">
+      <div class="col col-img">
         <img src="{{recipe.img}}" />
       </div>
-      <div class="col"></div>
     </div><!-- /row -->
 
     <hr />
 
     <!-- Preparation -->
     <div class="row">
-      <div class="col">
-        <div class="row" *ngFor="let product of recipe.products">
-          {{product}}
-        </div>
+      <div class="col col-left">
+        <h5>Products:</h5>
+        <ul class="list-left">
+          <li *ngFor="let product of recipe.products">
+            {{product}}
+          </li>
+        </ul>
       </div>
-      <div class="col">
+      <div class="col-8 col-right">
+        <h5>How to prepare:</h5>
         {{recipe.preparation}}
       </div>
     </div> <!-- /row -->
@@ -43,17 +43,22 @@
     <hr />
 
     <!-- Author -->
-    <div class="row">
-      <div class="col"></div>
-      <div class="col"></div>
-      <div class="col">
-       Author: {{recipe.author.firstName}} {{recipe.author.lastName}}
+    <div class="row" *ngIf="isAdmin || recipe.isAuthor; else noAuth">
+      <div class="col col-btns">
+        <a href="/recipe/edit/{{recipe._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
+        <a mdbBtn color="secondary" (click)="deleteRecipe(recipe._id)" mdbWavesEffect>Delete</a>
       </div>
-    </div> <!-- /row -->
+      <div class="col col-footer">
+        Author: {{recipe.author.firstName}} {{recipe.author.lastName}}
+      </div>
+    </div>
 
-    <div class="row" *ngIf="isAdmin || recipe.isAuthor">
-      <a href="/recipe/edit/{{recipe._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
-      <a mdbBtn color="secondary" (click)="deleteRecipe(recipe._id)" mdbWavesEffect>Delete</a>
-    </div> <!-- /row -->
+    <ng-template #noAuth>
+      <div class="row">
+          <div class="col col-footer">
+            Author: {{recipe.author.firstName}} {{recipe.author.lastName}}
+          </div><!-- /col col-footer -->
+      </div><!-- /row -->
+    </ng-template>
   </div><!-- /container -->
 </ng-template>

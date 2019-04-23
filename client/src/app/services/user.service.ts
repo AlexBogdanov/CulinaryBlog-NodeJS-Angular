@@ -12,6 +12,8 @@ import { Constants } from './../constants/constants';
 // URLs
 const registerUrl = `${Constants.common.SERVER_BASE_PATH}/user/register`;
 const loginUrl = `${Constants.common.SERVER_BASE_PATH}/user/login`;
+const getUserByIdUrl = `${Constants.common.SERVER_BASE_PATH}/user/user/`;
+const updateUserUrl = `${Constants.common.SERVER_BASE_PATH}/user/update`;
 
 @Injectable({
   providedIn: 'root'
@@ -24,14 +26,14 @@ export class UserService {
     private notificationService: NotificationService
     ) { }
 
-  isLogged() {
+  isLogged(): boolean {
     const localStorage = window.localStorage.getItem('token');
     const sessionStorage = window.localStorage.getItem('token');
     
     return localStorage || sessionStorage ? true : false;
   }
 
-  isAdmin() {
+  isAdmin(): boolean {
     const localStorage = window.localStorage.getItem('role');
     const sessionStorage = window.localStorage.getItem('role');
 
@@ -39,25 +41,30 @@ export class UserService {
       ? true: false;
   }
 
-  setUserLocal(id, token, role) {
+  isAuthenticated(): boolean {
+    return this.isAdmin() || this.isLogged()
+      ? true : false;
+  }
+
+  setUserLocal(id, token, role): void {
     window.localStorage.setItem('id', id);
     window.localStorage.setItem('token', token);
     window.localStorage.setItem('role', role);
   }
 
-  setUserSession(token, role) {
+  setUserSession(token, role): void {
     window.sessionStorage.setItem('token', token);
     window.sessionStorage.setItem('role', role);
   }
 
-  getItem(itemName) {
+  getItem(itemName): string {
     const localStorage = window.localStorage.getItem(itemName);
     const sessionStorage = window.sessionStorage.getItem(itemName);
 
     return localStorage ? localStorage : sessionStorage;
   }
 
-  logout() {
+  logout(): void {
     window.localStorage.clear();
     window.sessionStorage.clear();
     this.router.navigate(['/']);
@@ -70,5 +77,13 @@ export class UserService {
 
   login(user: LoginUserModel): Observable<any> {
     return this.http.post(loginUrl, user);
+  }
+
+  getUserById(id): Observable<any> {
+    return this.http.get(getUserByIdUrl + id);
+  }
+
+  updateUser(user): Observable<any> {
+    return this.http.put(updateUserUrl, user);
   }
 }

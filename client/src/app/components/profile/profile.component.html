@@ -1,0 +1,50 @@
+<div class="text-center" *ngIf="isLoading; else loaded">
+  <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
+<ng-template #loaded>
+  <div class="container">
+    <div class="col-4">
+      <div class="row">
+        <img src="{{user.profilePic}}" alt="" >
+      </div><!-- /row -->
+
+      <div class="row">
+        <h5>{{user.firstName}} {{user.lastName}}</h5>
+      </div><!-- /row -->
+
+      <div class="row">
+        <h5>{{user.email}}</h5>
+      </div><!-- /row -->
+    </div><!-- /col-4 -->
+    <div class="col-8">
+      <div class="col-6">
+        <div class="row" *ngFor="let article of user.articles">
+          <div class="row">
+            <img src="article.img" />
+            <h5>{{article.title}}</h5>
+          </div><!-- /row -->
+
+          <div class="row">
+            <!-- <span>{{article.shortDescr}}</span> -->
+          </div><!-- /row -->
+        </div><!-- /row -->
+      </div><!-- /col-6 -->
+
+      <div class="col-6">
+        <div class="row" *ngFor="let recipe of user.recipes">
+          <div class="row">
+            <img src="recipe.img" alt="" />
+            <h5>{{recipe.name}}</h5>
+          </div><!-- /row -->
+          
+          <div class="row">
+            <!-- <span>{{recipe.shortDescr}}</span> -->
+          </div><!-- /row -->
+        </div><!-- /row -->
+      </div><!-- /col-6 -->
+    </div><!-- /col-8 -->
+  </div>
+</ng-template>

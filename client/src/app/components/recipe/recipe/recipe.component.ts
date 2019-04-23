@@ -57,7 +57,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
         this._notificationService.showSuccess(res.data.msg);
         const route = this.isAdmin
           ? '/recipes'
-          : `/my-recipes/${this._currUserId}`;
+          : `/my-recipes`;
         
         this._router.navigate([route]);
       }, err => {

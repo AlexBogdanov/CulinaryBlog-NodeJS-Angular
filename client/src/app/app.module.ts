@@ -14,6 +14,9 @@ import { AppComponent } from './app.component';
 import { ServerErrorInterceptor } from './http-interceptors/server-error-interceptor';
 import { TokenInterceptor } from './http-interceptors/token-interceptor';
 
+// Guards
+import { AuthGuard } from './guards/auth-guard.service';
+
 // Error handler
 import { GlobalErrorHandler } from './utilities/global-error-handler';
 
@@ -37,6 +40,7 @@ import { MyRecipesComponent } from './components/recipe/my-recipes/my-recipes.co
 import { UserService } from './services/user.service';
 import { ArticleService } from './services/article.service';
 import { RecipeService } from './services/recipe.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,8 @@ import { RecipeService } from './services/recipe.service';
     ArticleComponent,
     MyArticlesComponent,
     RecipeComponent,
-    MyRecipesComponent
+    MyRecipesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +71,7 @@ import { RecipeService } from './services/recipe.service';
     MDBBootstrapModule.forRoot()
   ],
   providers: [
+    AuthGuard,
     UserService,
     ArticleService,
     RecipeService,
