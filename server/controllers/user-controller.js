@@ -1,4 +1,4 @@
-const { userData } = require('./../data');
+const { userData, articleData, recipeData } = require('./../data');
 const cloneOnly = require('./../utilities/clone-only');
 
 const validProperties = [
@@ -57,6 +57,21 @@ const userController = {
           .catch(err => {
               res.error(err.message);
           });
+    },
+
+    search: async (req, res) => {
+        const searchStr = req.query.search;
+
+        try {
+            const users = await userData.searchUsers(searchStr);
+            const articles = await articleData.searchArticles(searchStr);
+            const recipes = await recipeData.searchRecipes(searchStr);
+
+            const result = [...users, ...articles, ...recipes];
+            res.success(result);
+        } catch (err) {
+            res.error(err.message);
+        }
     }
 };
 

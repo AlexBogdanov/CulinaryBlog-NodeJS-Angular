@@ -81,6 +81,19 @@ const recipeData = {
 
             res(recipes);
         });
+    }),
+
+    searchRecipes: (searchStr) => new Promise((res, rej) => {
+        Recipe.find({ name: { $regex: '^' + searchStr } })
+        .select('_id name')
+        .exec((err, recipes) => {
+            if (err) {
+                console.log(err);
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_RECIPES));
+            }
+
+            res(recipes);
+        });
     })
 };
 

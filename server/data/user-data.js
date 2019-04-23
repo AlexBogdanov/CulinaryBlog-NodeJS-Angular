@@ -119,7 +119,25 @@ const userData = {
             console.log(err);
             throw new Error(notifMsgs.errors.COULD_NOT_ADD_RECIPE_TO_USER);
         }
-    }
+    },
+
+    searchUsers: (searchStr) => new Promise((res, rej) => {
+        User.find({ 
+            $or: [
+                { firstName: { $regex: '^' + searchStr } },
+                { lastName: { $regex: '^' + searchStr } },
+                { username: { $regex: '^' + searchStr } }
+            ]
+         }).select('_id firstName lastName username')
+         .exec((err, users) => {
+            if (err) {
+                console.log(err);
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_USERS));
+            }
+
+            res(users);
+         });
+    })
 };
 
 module.exports = userData;

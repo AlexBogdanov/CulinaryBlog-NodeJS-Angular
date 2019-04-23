@@ -72,6 +72,19 @@ const articleData = {
 
             res(articles);
         });
+    }),
+
+    searchArticles: (searchStr) => new Promise((res, rej) => {
+        Article.find({ title: { $regex: '^' + searchStr } })
+        .select('_id title')
+        .exec((err, articles) => {
+            if (err) {
+                console.log(err);
+                rej(new Error(notifMsgs.errors.COULD_NOT_GET_ARTICLES));
+            }
+
+            res(articles);
+        });
     })
 };
 

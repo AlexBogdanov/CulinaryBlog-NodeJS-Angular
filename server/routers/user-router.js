@@ -7,6 +7,7 @@ router
     .post('/register', userController.register)
     .post('/login', passport.authenticate('local'), userController.login)
     .get('/user/:id', passport.authenticate('jwt'), userController.getUserById)
-    .put('/update', passport.authenticate('jwt'), userController.updateUser);
+    .put('/update', passport.authenticate('jwt'), userController.updateUser)
+    .get('/search', passport.authenticate('jwt'), userController.search);
 
 module.exports = router;

@@ -18,7 +18,8 @@ const notifMsgs = {
         COULD_NOT_GET_USER: 'Unable to find user, please try again.',
         COULD_NOT_UPDATE_USER: 'Unable to update user, please try again.',
         COULD_NOT_ADD_ARTICLE_TO_USER: 'Unable to add article to user.',
-        COULD_NOT_ADD_RECIPE_TO_USER: 'Unable to add recipe to user.'
+        COULD_NOT_ADD_RECIPE_TO_USER: 'Unable to add recipe to user.',
+        COULD_NOT_GET_USERS: 'Unable to find users, please try again.'
     },
 
     success: {
