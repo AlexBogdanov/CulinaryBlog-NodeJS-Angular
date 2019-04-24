@@ -11,10 +11,16 @@
       <p class="h4 mb-4">Edit recipe</p>
   
       <!-- Name -->
-      <input type="text" name="name" class="form-control mb-4" placeholder="Name" [(ngModel)]="recipe.name" required >
+      <div class="md-form">
+        <input mdbInput type="text" name="name" id="name" class="form-control" [(ngModel)]="recipe.name" >
+        <label for="name" class="">Name</label>
+      </div><!-- /md-form -->
 
       <!-- Products -->
-      <input type="text" name="product" class="form-control mb-4" placeholder="Product" [(ngModel)]="currProduct" required >
+      <div class="md-form">
+        <input mdbInput type="text" name="product" id="product" class="form-control" [(ngModel)]="currProduct" >
+        <label for="product" class="">Product</label>
+      </div><!-- /md-form -->
       <button type="button" mdbBtn color="secondary" (click)="addProduct()" mdbWavesEffect>Add</button>
 
       <!-- Listed products -->
@@ -37,7 +43,10 @@
       </div>
   
       <!-- Img -->
-      <input type="text" name="img" class="form-control mb-4" placeholder="Image url" [(ngModel)]="recipe.img" required >
+      <div class="md-form">
+        <input mdbInput type="text" name="img" id="img" class="form-control" [(ngModel)]="recipe.img" >
+        <label for="img" class="">Image url</label>
+      </div><!-- /md-form -->
   
       <!-- Edit button -->
       <button mdbBtn color="secondary" block="true" class="my-4" type="submit">Edit</button>

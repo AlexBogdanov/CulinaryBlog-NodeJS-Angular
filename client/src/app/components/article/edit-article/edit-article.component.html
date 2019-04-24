@@ -11,7 +11,10 @@
       <p class="h4 mb-4">Edit article</p>
   
       <!-- Title -->
-      <input type="text" name="title" class="form-control mb-4" placeholder="Title" [(ngModel)]="article.title" required >
+      <div class="md-form">
+        <input mdbInput type="text" name="title" id="title" class="form-control" [(ngModel)]="article.title" >
+        <label for="title" class="">Title</label>
+      </div><!-- /md-form -->
   
       <!-- Description -->
       <div class="md-form">
@@ -21,7 +24,10 @@
       </div>
   
       <!-- Img -->
-      <input type="text" name="img" class="form-control mb-4" placeholder="Image url" [(ngModel)]="article.img" required >
+      <div class="md-form">
+        <input mdbInput type="text" name="img" id="img" class="form-control" [(ngModel)]="article.img" >
+        <label for="img" class="">Image url</label>
+      </div><!-- /md-form -->
   
       <!-- Edit button -->
       <button mdbBtn color="secondary" block="true" class="my-4" type="submit">Edit</button>

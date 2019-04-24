@@ -83,7 +83,7 @@
           <div class="btn-group" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" href="/profile/{{currUserId}}">My profile</a>
+              <a class="dropdown-item" href="/profile/{{currUserId}}" *ngIf="!isAdmin">My profile</a>
               <a class="dropdown-item" (click)="logout()">Logout</a>
             </div>
           </div>

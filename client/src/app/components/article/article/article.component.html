@@ -44,7 +44,7 @@
         <a mdbBtn color="secondary" (click)="deleteArticle(article._id)" mdbWavesEffect>Delete</a>
       </div>
       <div class="col col-footer">
-        Author: {{article.author.firstName}} {{article.author.lastName}}
+        Author: <a href="/profile/{{article.author._id}}">{{article.author.firstName}} {{article.author.lastName}}</a>
       </div>
     </div><!-- /row -->
 

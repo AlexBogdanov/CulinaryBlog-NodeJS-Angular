@@ -49,7 +49,7 @@
         <a mdbBtn color="secondary" (click)="deleteRecipe(recipe._id)" mdbWavesEffect>Delete</a>
       </div>
       <div class="col col-footer">
-        Author: {{recipe.author.firstName}} {{recipe.author.lastName}}
+        Author: <a href="/profile/{{recipe.author}}">{{recipe.author.firstName}} {{recipe.author.lastName}}</a>
       </div>
     </div>
 

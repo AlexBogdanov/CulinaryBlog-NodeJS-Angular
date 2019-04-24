@@ -11,10 +11,16 @@
       <p class="h4 mb-4">Sign in</p>
 
       <!-- Username -->
-      <input type="text" name="username" class="form-control mb-4" placeholder="Username" [(ngModel)]="username" required >
+      <div class="md-form">
+        <input mdbInput type="text" name="username" id="username" class="form-control" [(ngModel)]="username" >
+        <label for="username" class="">Username</label>
+      </div><!-- /md-form -->
 
       <!-- Password -->
-      <input type="password" name="password" class="form-control" placeholder="Password" aria-describedby="password" [(ngModel)]="password" required>
+      <div class="md-form">
+        <input mdbInput type="password" name="password" id="password" class="form-control" [(ngModel)]="password" >
+        <label for="password" class="">Password</label>
+      </div><!-- /md-form -->
 
       <!-- Sign in button -->
       <button mdbBtn color="secondary" block="true" class="my-4" type="submit">Sign in</button>
