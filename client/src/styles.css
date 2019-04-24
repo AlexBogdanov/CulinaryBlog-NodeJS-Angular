@@ -270,4 +270,12 @@ li.list-left {
 div.col.col-overflow {
   overflow: auto;
 }
+
+div.row.margined {
+  margin-top: 15px;
+}
   
+img.img-max-size {
+  max-width: 300px;
+  max-height: 300px;
+}

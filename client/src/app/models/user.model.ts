@@ -6,7 +6,8 @@ export class UserModel {
         public firstName: string,
         public lastName: string,
         public email: string,
-        public username: string
+        public username: string,
+        public profilePic: string
     ) { }
 
     public articles: ArticleModel[];

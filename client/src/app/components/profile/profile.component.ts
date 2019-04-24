@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { UserService } from './../../services/user.service';
+import { NotificationService } from './../../services/notification.service';
 import { UserModel } from './../../models/user.model';
 
 @Component({
@@ -15,11 +16,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public isLoading: boolean;
   public user: UserModel;
   public isUserLoggedUser: boolean;
+  public profilePic: string;
+  public username: string;
+  public firstName: string;
+  public lastName: string;
 
   constructor(
     private _userService: UserService,
     private _route: ActivatedRoute,
-    private _router: Router
+    private _router: Router,
+    private _notificationService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -73,6 +79,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.user.recipes = tempJ;
 
         this.isUserLoggedUser = res.data._id === this._userService.getItem('id');
+        this.profilePic = this.user.profilePic;
+        this.username = this.user.username;
+        this.firstName = this.user.firstName;
+        this.lastName = this.user.lastName;
         this.isLoading = false;
       }, err => {
         this._router.navigate(['/']);
@@ -83,6 +93,27 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this._subscribtions.forEach(sub => sub.unsubscribe());
+  }
+
+  editProfile(): void {
+    this.isLoading = true;
+    
+    const userToEdit = {
+      profilePic: this.profilePic ? this.profilePic : this.user.profilePic,
+      username: this.username ? this.username : this.user.username,
+      firstName: this.firstName ? this.firstName : this.user.firstName,
+      lastName: this.lastName ? this.lastName : this.user.lastName
+    };
+    
+    this._subscribtions.push(
+      this._userService.updateUser(userToEdit).subscribe(res => {
+        this._notificationService.showSuccess(res.data.msg);
+        window.location.reload();
+      }, err => {
+        this.isLoading = false;
+        throw err;
+      })
+    );
   }
 
 }

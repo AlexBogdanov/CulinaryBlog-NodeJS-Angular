@@ -6,17 +6,46 @@
 
 <ng-template #loaded>
   <div class="container">
-    <div class="row">
+    <div class="row margined" *ngIf="isUserLoggedUser; else notCurrUser">
       <div class="col-4">
-        <img src="{{user.profilePic}}" alt="" >
+        <img class="img-max-size" src="{{profilePic}}" >
+        <br>
+        <div class="md-form">
+          <input mdbInput type="text" name="profilePic" id="profilePic" class="form-control" [(ngModel)]="profilePic" >
+          <label for="profilePic" class="">Profile picture url</label>
+        </div><!-- /md-form -->
       </div><!-- /col-4 -->
 
       <div class="col-8">
-        <h3>{{user.username}}</h3>
-        <h3>{{user.firstName}} {{user.lastName}}</h3>
-        <h3>{{user.email}}</h3>
+        <div class="md-form">
+          <input mdbInput type="text" name="username" id="username" class="form-control" [(ngModel)]="username" >
+          <label for="username" class="">Username</label>
+        </div><!-- /md-form -->
+        <div class="md-form">
+          <input mdbInput type="text" name="firstName" id="firstName" class="form-control" [(ngModel)]="firstName" >
+          <label for="firstName" class="">First name</label>
+        </div><!-- /md-form -->
+        <div class="md-form">
+          <input mdbInput type="text" name="lastName" id="lastName" class="form-control" [(ngModel)]="lastName" >
+          <label for="lastName" class="">Last name</label>
+        </div><!-- /md-form -->
+        <a mdbBtn color="secondary" mdbWavesEffect (click)="editProfile()">Edit</a>
       </div><!-- /col-8 -->
     </div><!-- /row -->
+
+    <ng-template #notCurrUser>
+      <div class="row margined">
+        <div class="col-4">
+          <img class="img-max-size" src="{{user.profilePic}}" alt="" >
+        </div><!-- /col-4 -->
+    
+        <div class="col-8">
+          <h3>{{user.username}}</h3>
+          <h3>{{user.firstName}} {{user.lastName}}</h3>
+          <h3>{{user.email}}</h3>
+        </div><!-- /col-8 -->
+      </div><!-- /row -->
+    </ng-template>
 
     <hr>
 
