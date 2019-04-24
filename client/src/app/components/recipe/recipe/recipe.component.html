@@ -5,7 +5,7 @@
 </div>
 
 <ng-template #loaded>
-  <div class="container container-additional-style">
+  <div class="container container-additional-style background">
     <!-- Name -->
     <div class="row">
       <div class="col col-header">
@@ -49,13 +49,17 @@
         <a mdbBtn color="secondary" (click)="deleteRecipe(recipe._id)" mdbWavesEffect>Delete</a>
       </div>
       <div class="col col-footer">
-        Author: <a routerLink="/profile/{{recipe.author}}">{{recipe.author.firstName}} {{recipe.author.lastName}}</a>
+        Author: <a routerLink="/profile/{{recipe.author._id}}">{{recipe.author.firstName}} {{recipe.author.lastName}}</a>
       </div>
     </div>
 
     <ng-template #noAuth>
       <div class="row">
-          <div class="col col-footer">
+          <div class="col col-footer" *ngIf="isLogged">
+            Author: <a routerLink="/profile/{{recipe.author._id}}">{{recipe.author.firstName}} {{recipe.author.lastName}}</a>
+          </div>
+
+          <div class="col col-footer" *ngIf="!isLogged">
             Author: {{recipe.author.firstName}} {{recipe.author.lastName}}
           </div><!-- /col col-footer -->
       </div><!-- /row -->

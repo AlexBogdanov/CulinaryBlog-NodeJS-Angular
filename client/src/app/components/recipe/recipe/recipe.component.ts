@@ -15,6 +15,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
 
   private _subscribtions: Subscription[] = [];
   public isAdmin: boolean;
+  public isLogged: boolean;
   private _currUserId: string;
   public isLoading: boolean;
   public recipe: RecipeModel;
@@ -31,6 +32,7 @@ export class RecipeComponent implements OnInit, OnDestroy {
     this.isLoading = true;
 
     this.isAdmin = this._userService.isAdmin();
+    this.isLogged = this._userService.isLogged();
     this._currUserId = this._userService.getItem('id');
 
     this._subscribtions.push(

@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public user: UserModel;
   public isUserLoggedUser: boolean;
   public profilePic: string;
-  public username: string;
+  public email: string;
   public firstName: string;
   public lastName: string;
 
@@ -80,7 +80,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
         this.isUserLoggedUser = res.data._id === this._userService.getItem('id');
         this.profilePic = this.user.profilePic;
-        this.username = this.user.username;
+        this.email = this.user.email;
         this.firstName = this.user.firstName;
         this.lastName = this.user.lastName;
         this.isLoading = false;
@@ -100,7 +100,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     
     const userToEdit = {
       profilePic: this.profilePic ? this.profilePic : this.user.profilePic,
-      username: this.username ? this.username : this.user.username,
+      email: this.email ? this.email : this.user.email,
       firstName: this.firstName ? this.firstName : this.user.firstName,
       lastName: this.lastName ? this.lastName : this.user.lastName
     };
