@@ -1,5 +1,6 @@
 const { userData, articleData, recipeData } = require('./../data');
 const cloneOnly = require('./../utilities/clone-only');
+const { dataTypes } = require('./../constants/common');
 
 const validProperties = [
     'username', 'fistName', 'lastName',
@@ -55,7 +56,22 @@ const userController = {
             const articles = await articleData.searchArticles(searchStr);
             const recipes = await recipeData.searchRecipes(searchStr);
 
-            const result = [...users, ...articles, ...recipes];
+            const mappedUsers = users.map(user => {
+                user.type = dataTypes.USER;
+                return user;
+            });
+
+            const mappedArticles = articles.map(article => {
+                article.type = dataTypes.ARTICLE;
+                return article;
+            });
+
+            const mappedRecipes = recipes.map(recipe => {
+                recipe.type = dataTypes.RECIPE;
+                return recipe;
+            });
+
+            const result = [...mappedUsers, ...mappedArticles, ...mappedRecipes];
             res.success(result);
         } catch (err) {
             res.error(err.message);
