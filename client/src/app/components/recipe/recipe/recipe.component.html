@@ -45,11 +45,11 @@
     <!-- Author -->
     <div class="row" *ngIf="isAdmin || recipe.isAuthor; else noAuth">
       <div class="col col-btns">
-        <a href="/recipe/edit/{{recipe._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
+        <a routerLink="/recipe/edit/{{recipe._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
         <a mdbBtn color="secondary" (click)="deleteRecipe(recipe._id)" mdbWavesEffect>Delete</a>
       </div>
       <div class="col col-footer">
-        Author: <a href="/profile/{{recipe.author}}">{{recipe.author.firstName}} {{recipe.author.lastName}}</a>
+        Author: <a routerLink="/profile/{{recipe.author}}">{{recipe.author.firstName}} {{recipe.author.lastName}}</a>
       </div>
     </div>
 

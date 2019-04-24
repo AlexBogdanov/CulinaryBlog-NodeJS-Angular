@@ -40,11 +40,11 @@
     <!-- Author -->
     <div class="row" *ngIf="isAdmin || article.isAuthor; else notAuth">
       <div class="col col-btns">
-        <a href="/article/edit/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
+        <a routerLink="/article/edit/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Edit</a>
         <a mdbBtn color="secondary" (click)="deleteArticle(article._id)" mdbWavesEffect>Delete</a>
       </div>
       <div class="col col-footer">
-        Author: <a href="/profile/{{article.author._id}}">{{article.author.firstName}} {{article.author.lastName}}</a>
+        Author: <a routerLink="/profile/{{article.author._id}}">{{article.author.firstName}} {{article.author.lastName}}</a>
       </div>
     </div><!-- /row -->
 

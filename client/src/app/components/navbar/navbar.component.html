@@ -2,7 +2,7 @@
 <mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark purple lighten-1" [containerInside]="false">
 
   <!-- Navbar brand -->
-  <mdb-navbar-brand><a class="navbar-brand" href="/">Home</a></mdb-navbar-brand>
+  <mdb-navbar-brand><a class="navbar-brand" routerLink="/">Home</a></mdb-navbar-brand>
 
   <!-- Collapsible content -->
   <links>
@@ -14,10 +14,10 @@
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Article<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/articles">Articles</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/article/create">Create article</a>
           <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/my-articles">My articles</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/my-articles">My articles</a>
         </div>
       </li>
 
@@ -25,10 +25,10 @@
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Recipe<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/recipes">Recipes</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/recipe/create">Create recipe</a>
           <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="/my-recipes">My recipes</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/my-recipes">My recipes</a>
         </div>
       </li>
     </ul>
@@ -42,10 +42,10 @@
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Article<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="/articles">Articles</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="/article/create">Create article</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/articles">Articles</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/article/create">Create article</a>
             <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="/my-articles">My articles</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/my-articles">My articles</a>
           </div>
         </li>
     
@@ -53,10 +53,10 @@
           <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
             Recipe<span class="caret"></span></a>
           <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-            <a class="dropdown-item waves-light" mdbWavesEffect href="/recipes">Recipes</a>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="/recipe/create">Create recipe</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/recipes">Recipes</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/recipe/create">Create recipe</a>
             <div class="divider dropdown-divider"></div>
-            <a class="dropdown-item waves-light" mdbWavesEffect href="/my-recipes">My recipes</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect routerLink="/my-recipes">My recipes</a>
           </div>
         </li>
       </ul>
@@ -66,10 +66,10 @@
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect href="/articles">Articles</a>
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/articles">Articles</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link waves-light" mdbWavesEffect href="/recipes">Recipes</a>
+            <a class="nav-link waves-light" mdbWavesEffect routerLink="/recipes">Recipes</a>
           </li>
         
         </ul>
@@ -83,7 +83,7 @@
           <div class="btn-group" mdbDropdown>
             <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
             <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-              <a class="dropdown-item" href="/profile/{{currUserId}}" *ngIf="!isAdmin">My profile</a>
+              <a class="dropdown-item" routerLink="/profile/{{currUserId}}" *ngIf="!isAdmin">My profile</a>
               <a class="dropdown-item" (click)="logout()">Logout</a>
             </div>
           </div>
@@ -98,8 +98,8 @@
             <div class="btn-group" mdbDropdown>
               <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
               <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                <a class="dropdown-item" href="/login">Login</a>
-                <a class="dropdown-item" href="/register">Register</a>
+                <a class="dropdown-item" routerLink="/login">Login</a>
+                <a class="dropdown-item" routerLink="/register">Register</a>
               </div>
             </div>
           </a>
