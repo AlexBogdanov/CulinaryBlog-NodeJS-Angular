@@ -79,7 +79,7 @@ export class UserService {
     return this.http.post(loginUrl, user);
   }
 
-  getUserById(id): Observable<any> {
+  getUserById(id: string): Observable<any> {
     return this.http.get(getUserByIdUrl + id);
   }
 

@@ -50,7 +50,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       this._userService.login(userToLog).subscribe(
         res => {
           this._userService.setUserLocal(res.data.user._id, res.data.token, res.data.user.roles[0]);
-          this.isLoading = false;
           this._notificationService.showSuccess(res.data.msg);
           window.location.href = '/';
         }, err => {

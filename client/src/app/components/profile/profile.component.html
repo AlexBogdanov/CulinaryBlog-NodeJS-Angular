@@ -6,45 +6,70 @@
 
 <ng-template #loaded>
   <div class="container">
-    <div class="col-4">
-      <div class="row">
+    <div class="row">
+      <div class="col-4">
         <img src="{{user.profilePic}}" alt="" >
-      </div><!-- /row -->
+      </div><!-- /col-4 -->
 
-      <div class="row">
-        <h5>{{user.firstName}} {{user.lastName}}</h5>
-      </div><!-- /row -->
+      <div class="col-8">
+        <h3>{{user.username}}</h3>
+        <h3>{{user.firstName}} {{user.lastName}}</h3>
+        <h3>{{user.email}}</h3>
+      </div><!-- /col-8 -->
+    </div><!-- /row -->
 
-      <div class="row">
-        <h5>{{user.email}}</h5>
-      </div><!-- /row -->
-    </div><!-- /col-4 -->
-    <div class="col-8">
-      <div class="col-6">
-        <div class="row" *ngFor="let article of user.articles">
-          <div class="row">
-            <img src="article.img" />
-            <h5>{{article.title}}</h5>
-          </div><!-- /row -->
+    <hr>
 
-          <div class="row">
-            <!-- <span>{{article.shortDescr}}</span> -->
-          </div><!-- /row -->
+    <div class="row">
+      <div class="col col-overflow">
+        <h2>Articles:</h2>
+        <div class="row" *ngFor="let currArticles of user.articles">
+          <div class="col" *ngFor="let article of currArticles">
+            <mdb-card>
+              <!--Card image-->
+              <mdb-card-img src="{{article.img}}" alt=""></mdb-card-img>
+              <!--Card content-->
+              <mdb-card-body>
+                <!--Title-->
+                <mdb-card-title>
+                  <h4>{{article.title}}</h4>
+                </mdb-card-title>
+                                
+                <!--Text-->
+                <mdb-card-text>{{article.shortDescr}}</mdb-card-text>
+                            
+                <a href="/article/{{article._id}}" mdbBtn color="secondary" mdbWavesEffect>Open</a>
+              </mdb-card-body>
+            </mdb-card>
+          </div><!-- /col -->
         </div><!-- /row -->
-      </div><!-- /col-6 -->
+      </div><!-- /col -->
 
-      <div class="col-6">
-        <div class="row" *ngFor="let recipe of user.recipes">
-          <div class="row">
-            <img src="recipe.img" alt="" />
-            <h5>{{recipe.name}}</h5>
-          </div><!-- /row -->
-          
-          <div class="row">
-            <!-- <span>{{recipe.shortDescr}}</span> -->
-          </div><!-- /row -->
+      <div class="col col-overflow">
+        <h2>Recipes:</h2>
+        <div class="row" *ngFor="let currRecipes of user.recipes">
+          <div class="col" *ngFor="let recipe of currRecipes">
+            <mdb-card>
+              <!--Card image-->
+              <mdb-card-img src="{{recipe.img}}" alt=""></mdb-card-img>
+              <!--Card content-->
+              <mdb-card-body>
+                <!--Title-->
+                <mdb-card-title>
+                  <h4>{{recipe.name}}</h4>
+                </mdb-card-title>
+                                  
+                <!--Text-->
+                <mdb-card-text>{{recipe.shortDescr}}</mdb-card-text>
+                              
+                <a href="/recipe/{{recipe._id}}" mdbBtn color="secondary" mdbWavesEffect>Open</a>
+              </mdb-card-body>
+            </mdb-card>
+          </div><!-- /col -->
         </div><!-- /row -->
-      </div><!-- /col-6 -->
-    </div><!-- /col-8 -->
-  </div>
+      </div><!-- /col -->
+    </div><!-- /row -->
+
+    <hr>
+  </div><!-- /container -->
 </ng-template>

@@ -7,4 +7,5 @@ export class ArticleModel {
 
     public isAuthor: boolean;
     public img: string;
+    public shortDescr: string;
 };

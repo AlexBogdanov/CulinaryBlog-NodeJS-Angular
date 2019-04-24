@@ -72,7 +72,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this._subscibtions.push(
       this._userService.register(userToCreate).subscribe(
         res => {
-          this.isLoading = false;
           this._notificationService.showSuccess(res.data.msg);
           this._router.navigate(['/']);
         }, err => {

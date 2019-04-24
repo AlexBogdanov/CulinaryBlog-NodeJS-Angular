@@ -31,19 +31,7 @@ const userController = {
 
     getUserById: (req, res) => {
         userData.getUserById(req.params.id)
-          .then(user => {
-              user.articles = user.articles.map(article => {
-                article.shortDescr = article.description.substring(0, 50);
-                return article;
-              });
-
-              user.recipes = user.recipes.map(recipe => {
-                recipe.shortDescr = recipe.preparation.substring(0, 50);
-                return recipe;
-              });
-
-              res.success(user);
-          })
+          .then(res.success)
           .catch(err => {
             res.error(err.message);
           });

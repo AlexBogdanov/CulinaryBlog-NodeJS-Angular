@@ -27,8 +27,51 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
     this._subscribtions.push(
       this._userService.getUserById(this._route.snapshot.params.id).subscribe(res => {
-        debugger;
+        let i = 0;
+        let j = 0;
+        const tempI = [];
+        const tempJ = [];
+        tempI[i] = [];
+        tempJ[j] = [];
+
         this.user = res.data;
+        this.user.articles = res.data.articles.map(article => {
+          article.shortDescr = article.description.substring(0, 30);
+          return article;
+        }).forEach(article => {
+          if (tempI[i].length < 2) {
+            tempI[i].push(article);
+          } else {
+            i += 1;
+            tempI[i] = [];
+            tempI[i].push(article);
+          }
+        });
+
+        if (tempI[tempI.length - 1].length < 1) {
+          tempI.pop();
+        }
+
+        this.user.recipes = res.data.recipes.map(recipe => {
+          recipe.shortDescr = recipe.preparation.substring(0, 30);
+          return recipe;
+        }).forEach(recipe => {
+          if (tempJ[j].length < 2) {
+            tempJ[j].push(recipe);
+          } else {
+            j += 1;
+            tempJ[j] = [];
+            tempJ[j].push(recipe)
+          }
+        });
+
+        if (tempJ[tempJ.length - 1].length < 1) {
+          tempJ.pop();
+        }
+
+        this.user.articles = tempI;
+        this.user.recipes = tempJ;
+
         this.isUserLoggedUser = res.data._id === this._userService.getItem('id');
         this.isLoading = false;
       }, err => {

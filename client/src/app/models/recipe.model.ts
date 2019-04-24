@@ -8,4 +8,5 @@ export class RecipeModel {
 
     public img: string;
     public isAuthor: boolean;
+    public shortDescr: string;
 };
