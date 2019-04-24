@@ -98,8 +98,8 @@
             <div class="btn-group" mdbDropdown>
               <mdb-icon fas icon="user" mdbDropdownToggle></mdb-icon>
               <div class="dropdown-menu dropdown-menu-right dropdown-primary">
-                <a class="dropdown-item" routerLink="/login">Login</a>
-                <a class="dropdown-item" routerLink="/register">Register</a>
+                <a class="dropdown-item" (click)="loginModal.show()">Login</a>
+                <a class="dropdown-item" (click)="registerModal.show()">Register</a>
               </div>
             </div>
           </a>
@@ -111,3 +111,106 @@
 
 </mdb-navbar>
 <!--/.Navbar-->
+
+<!-- Register -->
+<div mdbModal #registerModal="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="text-center" *ngIf="isLoading">
+    <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="modal-dialog" role="document" *ngIf="!isLoading">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Register</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="registerModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="firstName" class="form-control validate" [(ngModel)]="firstName"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="firstName">First name</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="lastName" class="form-control validate" [(ngModel)]="lastName"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="lastName">Last name</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="usernameRegister" class="form-control validate" [(ngModel)]="usernameRegister"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="usernameRegister">Username</label>
+        </div>
+
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <input type="email" id="email" class="form-control validate" [(ngModel)]="email"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="email">Email</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="passwordRegister" class="form-control validate" [(ngModel)]="passwordRegister"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="passwordRegister">Password</label>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="secondary" class="waves-light" mdbWavesEffect (click)="registerUser(registerModal)">Sign up</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.Register -->
+
+<!-- Login -->
+<div mdbModal #loginModal="mdbModal" class="modal fade left" id="frameModalTop" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="text-center" *ngIf="isLoading">
+    <div class="spinner-border text-secondary" style="width: 7rem; height: 7rem; margin-top: 35px;" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+
+  <div class="modal-dialog" role="document" *ngIf="!isLoading">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Login</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="loginModal.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <i class="fas fa-user prefix grey-text"></i>
+          <input type="text" id="usernameLogin" class="form-control validate" [(ngModel)]="usernameLogin"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="usernameLogin">Username</label>
+        </div>
+
+        <div class="md-form mb-4">
+          <i class="fas fa-lock prefix grey-text"></i>
+          <input type="password" id="passwordLogin" class="form-control validate" [(ngModel)]="passwordLogin"
+            mdbInput>
+          <label data-error="wrong" data-success="right" for="passwordLogin">Password</label>
+        </div>
+      </div>
+
+      <div class="modal-footer d-flex justify-content-center">
+        <button mdbBtn color="secondary" class="waves-light" mdbWavesEffect (click)="loginUser(registerModal)">Sign in</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /.Login -->

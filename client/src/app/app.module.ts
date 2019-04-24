@@ -23,8 +23,6 @@ import { GlobalErrorHandler } from './utilities/global-error-handler';
 // Components
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { RegisterComponent } from './components/register/register.component';
-import { LoginComponent } from './components/login/login.component';
 import { ArticlesComponent } from './components/article/articles/articles.component';
 import { CreateArticleComponent } from './components/article/create-article/create-article.component';
 import { EditArticleComponent } from './components/article/edit-article/edit-article.component';
@@ -53,8 +51,6 @@ import { ProfileComponent } from './components/profile/profile.component';
     EditRecipeComponent,
     HomeComponent,
     NavbarComponent,
-    LoginComponent,
-    RegisterComponent,
     ArticleComponent,
     MyArticlesComponent,
     RecipeComponent,
