@@ -292,7 +292,7 @@ img.img-max-size {
 }
 
 .form-right {
-  float: right;
+  padding-left: 1400px;
 }
 
 img.img-small {
