@@ -77,6 +77,26 @@
       </ng-template>
     </ng-template>
 
+    <ng-container *ngIf="isLogged">
+      <form class="form-inline waves-light form-right" mdbWavesEffect>
+        <div class="md-form my-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Search" [(ngModel)]="searchStr" [ngModelOptions]="{standalone: true}" (keydown)="search($event)" >
+        </div>
+      </form>
+      <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="matchedResults.length > 0">
+        <li class="nav-item">
+          <a class="nav-link">
+            <div class="btn-group" mdbDropdown>
+              <mdb-icon fas icon="mortar-pestle" mdbDropdownToggle></mdb-icon>
+              <div class="dropdown-menu dropdown-menu-right dropdown-primary">
+                <a class="dropdown-item" *ngFor="let result of matchedResults" (click)="openSearchItem(result)">{{result.currName}}</a>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </ng-container>
+
     <ul class="navbar-nav ml-auto nav-flex-icons" *ngIf="isLogged; else noLoggedUser">
       <li class="nav-item">
         <a class="nav-link">

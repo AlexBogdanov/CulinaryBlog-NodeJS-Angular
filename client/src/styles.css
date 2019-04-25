@@ -290,3 +290,19 @@ img.img-max-size {
   margin: 15px;
   background-color: white;
 }
+
+.form-right {
+  float: right;
+}
+
+img.img-small {
+  max-width: 500px;
+  max-height: 400px;
+  padding-top: 100px;
+  opacity: 0.9;
+}
+
+h3.h3-color {
+  color: white;
+  padding-bottom: 20px;
+}

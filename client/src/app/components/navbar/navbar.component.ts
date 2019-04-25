@@ -1,5 +1,6 @@
 import { Component, OnInit , OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 import { UserService } from './../../services/user.service';
 import { NotificationService } from './../../services/notification.service';
@@ -25,10 +26,13 @@ export class NavbarComponent implements OnInit, OnDestroy {
   public passwordRegister: string;
   public usernameLogin: string;
   public passwordLogin: string;
+  public searchStr: string;
+  public matchedResults: any[] = [];
 
   constructor(
     private _userService: UserService,
-    private _notificationService: NotificationService
+    private _notificationService: NotificationService,
+    private _router: Router
     ) { }
 
   ngOnInit() {
@@ -126,6 +130,42 @@ export class NavbarComponent implements OnInit, OnDestroy {
         }
       )
     );
+  }
+
+  search(e): void {
+    if (e.key === 'Enter') {
+      this.isLoading = true;
+
+      this._subscribtions.push(
+        this._userService.search(this.searchStr).subscribe(res => {
+          this.matchedResults = res.data.map(curr => {
+            if (curr.hasOwnProperty('firstName')) {
+              curr.currName = `${curr.firstName} ${curr.lastName}`;
+            } else if (curr.hasOwnProperty('title')) {
+              curr.currName = curr.title;
+            } else if (curr.hasOwnProperty('name')) {
+              curr.currName = curr.name;
+            }
+
+            return curr;
+          });
+          this.isLoading = false;
+        }, err => {
+          this.isLoading = false;
+          throw err
+        })
+      );
+    }
+  }
+
+  openSearchItem(item): void {
+    if (item.hasOwnProperty('firstName')) {
+      this._router.navigate([`/profile/${item._id}`]);
+    } else if (item.hasOwnProperty('title')) {
+      this._router.navigate([`/article/${item._id}`]);
+    } else if (item.hasOwnProperty('name')) {
+      this._router.navigate([`/recipe/${item._id}`]);
+    }
   }
   
 }

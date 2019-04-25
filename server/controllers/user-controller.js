@@ -56,22 +56,7 @@ const userController = {
             const articles = await articleData.searchArticles(searchStr);
             const recipes = await recipeData.searchRecipes(searchStr);
 
-            const mappedUsers = users.map(user => {
-                user.type = dataTypes.USER;
-                return user;
-            });
-
-            const mappedArticles = articles.map(article => {
-                article.type = dataTypes.ARTICLE;
-                return article;
-            });
-
-            const mappedRecipes = recipes.map(recipe => {
-                recipe.type = dataTypes.RECIPE;
-                return recipe;
-            });
-
-            const result = [...mappedUsers, ...mappedArticles, ...mappedRecipes];
+            const result = [...users, ...articles, ...recipes];
             res.success(result);
         } catch (err) {
             res.error(err.message);

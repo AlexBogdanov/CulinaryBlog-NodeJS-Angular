@@ -14,6 +14,7 @@ const registerUrl = `${Constants.common.SERVER_BASE_PATH}/user/register`;
 const loginUrl = `${Constants.common.SERVER_BASE_PATH}/user/login`;
 const getUserByIdUrl = `${Constants.common.SERVER_BASE_PATH}/user/user/`;
 const updateUserUrl = `${Constants.common.SERVER_BASE_PATH}/user/update`;
+const searchUrl = `${Constants.common.SERVER_BASE_PATH}/user/search/`;
 
 @Injectable({
   providedIn: 'root'
@@ -86,4 +87,9 @@ export class UserService {
   updateUser(user): Observable<any> {
     return this.http.put(updateUserUrl, user);
   }
+
+  search(searchStr: string): Observable<any> {
+    return this.http.get(`${searchUrl}?search=${searchStr}`);
+  }
+
 }

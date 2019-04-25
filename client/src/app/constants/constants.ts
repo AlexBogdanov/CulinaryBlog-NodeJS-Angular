@@ -13,4 +13,10 @@ export class Constants {
         SERVICE_UNAVAILABLE: 503,
         GATEWAY_TIMEOUT: 504
     };
+
+    public static readonly dataTypes = {
+        USER: 0,
+        ARTICLE: 1,
+        RECIPE: 2
+    };
 };
