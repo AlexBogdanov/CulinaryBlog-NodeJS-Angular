@@ -306,3 +306,8 @@ h3.h3-color {
   color: white;
   padding-bottom: 20px;
 }
+
+mdb-card-img.mdb-card-img.size {
+  max-width: 500px;
+  max-height: 500px;
+}
